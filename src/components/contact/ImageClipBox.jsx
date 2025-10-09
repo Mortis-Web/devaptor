@@ -4,8 +4,8 @@ const ImageClipBox = ({ src, clipClass }) => {
       <img
         src={src}
         alt="contact image"
-        // loading="lazy"
-        // decoding="async"
+        loading="lazy"
+        decoding="async"
         className="tilt"
       />
     </div>

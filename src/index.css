@@ -40,7 +40,6 @@ body {
     src:
       url('/fonts/circularweb-book.woff2') format('woff2'),
       url('/fonts/circularweb-book.woff') format('woff');
-    font-weight: 400;
     font-style: normal;
     font-display: swap;
   }
@@ -50,7 +49,6 @@ body {
     src:
       url('/fonts/general.woff2') format('woff2'),
       url('/fonts/general.woff') format('woff');
-    font-weight: 400;
     font-style: normal;
     font-display: swap;
   }
@@ -60,7 +58,6 @@ body {
     src:
       url('/fonts/robert-regular.woff2') format('woff2'),
       url('/fonts/robert-regular.woff') format('woff');
-    font-weight: 400;
     font-style: normal;
     font-display: swap;
   }
@@ -70,7 +67,6 @@ body {
     src:
       url('/fonts/robert-medium.woff2') format('woff2'),
       url('/fonts/robert-medium.woff') format('woff');
-    font-weight: 500;
     font-style: normal;
     font-display: swap;
   }
@@ -80,7 +76,6 @@ body {
     src:
       url('/fonts/zentry-regular.woff2') format('woff2'),
       url('/fonts/zentry-regular.woff') format('woff');
-    font-weight: 400;
     font-style: normal;
     font-display: swap;
   }
@@ -185,7 +180,7 @@ button {
   }
 
   .hero-heading {
-    @apply font-zentry text-5xl font-black uppercase sm:right-10 sm:text-7xl md:text-9xl lg:text-[12rem];
+    @apply font-zentry text-6xl font-black uppercase sm:right-10 sm:text-7xl md:text-9xl lg:text-[12rem];
   }
 
   .about-subtext {

@@ -19,7 +19,7 @@ const Story = () => {
           />
 
           <figure
-            className={`story-img-container ${isInView ? 'textAnimSlower' : ''} `}
+            className={`story-img-container ${isInView ? 'textAnimSlower' : 'opacity-0'} `}
           >
             <div className="story-img-mask">
               <span className="story-img-content tilt-wrapper">

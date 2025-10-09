@@ -60,7 +60,7 @@ const About = () => {
 
   return (
     <section ref={ref} id="about" className="min-h-screen">
-      <article className="relative mt-36 mb-8 flex flex-col items-center gap-5">
+      <article className="relative mt-24 lg:mt-30 mb-8 flex flex-col items-center gap-5">
         <AnimatedTitle
           title={`Welcome To de<b class="text-red-400">v</b>aptor`}
           subTitle={`disc<b>o</b>ver t<b>h</b>e w<b>o</b>rld's <br /> l<b>a</b>rgest share<b>d</b> ad<b>v</b>enture,`}

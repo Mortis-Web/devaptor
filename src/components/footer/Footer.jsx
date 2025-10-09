@@ -13,11 +13,11 @@ const Footer = React.memo(() => {
   return (
     <footer className="bg-red-400 py-4 text-black">
       <div className="container mx-auto flex flex-col items-center justify-between gap-4 px-4 md:flex-row">
-        <p className="text-center text-sm md:text-left">
+        <p className="min-w-[235px] text-center text-sm md:text-left">
           &copy; Devaptor 2025. All Rights Reserved.
         </p>
 
-        <div className="flex justify-center gap-4 md:justify-start">
+        <div className="a flex min-w-[235px] justify-center gap-4 ">
           {SOCIAL_LINKS.map(({ href, icon, name }) => (
             <a
               key={href}
@@ -36,7 +36,7 @@ const Footer = React.memo(() => {
         <a
           title="Privacy Policy"
           href="#privacy-policy"
-          className="text-center text-sm hover:underline md:text-right"
+          className="min-w-[235px] text-center text-sm hover:underline md:text-right"
         >
           Privacy Policy
         </a>

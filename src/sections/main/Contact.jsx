@@ -8,7 +8,7 @@ const Contact = () => {
 
   return (
     <section ref={ref} id="contact" className="xs:px-10 my-20 min-h-96 px-4">
-      <div className="relative rounded-lg bg-black py-24 text-blue-50 sm:overflow-hidden">
+      <div className="relative rounded-lg bg-black pt-24 pb-10 text-blue-50 sm:overflow-hidden sm:pb-24">
         {/* Left-side clipped images */}
         <figure className="absolute top-0 -left-20 hidden h-full w-72 overflow-hidden sm:block lg:left-20 lg:w-96">
           <ImageClipBox
@@ -47,9 +47,9 @@ const Contact = () => {
 
         <Btn
           title="Contact Us"
-          containerClass={`mt-10 ${
+          containerClass={`mt-15 sm:mt-8  ${
             isInView ? 'textAnimSlowest' : ''
-          } mx-auto block bg-violet-50`}
+          } mx-auto  block bg-violet-50`}
         />
       </div>
     </section>

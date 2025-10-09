@@ -227,6 +227,7 @@ const Hero = () => {
               muted
               loop
               loading="eager"
+              fetchpriority="high"
               preload="auto"
               id="main-video"
               playsInline
@@ -246,7 +247,7 @@ const Hero = () => {
             <h1 className="special-font textAnim hero-heading text-blue-100">
               de<b className="text-red-400">v</b>aptor
             </h1>
-            <p className="font-robert-regular textAnimSlow mb-5 max-w-64 text-blue-100">
+            <p className="font-robert-regular textAnimSlow my-2.5 max-w-64 text-blue-100 sm:my-5">
               Enter The Meta-game Layer <br /> Unleash The Play Economy
             </p>
             <Btn
@@ -273,7 +274,7 @@ const Hero = () => {
           <h1 className="special-font textAnim hero-heading text-black">
             de<b className="text-red-400">v</b>aptor
           </h1>
-          <p className="font-robert-regular textAnimSlow mb-5 max-w-64 text-black">
+          <p className="font-robert-regular textAnimSlow my-2.5 max-w-64 text-black sm:my-5">
             Enter The Meta-game Layer <br /> Unleash The Play Economy
           </p>
           <Btn
