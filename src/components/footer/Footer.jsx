@@ -17,7 +17,7 @@ const Footer = React.memo(() => {
           &copy; Devaptor 2025. All Rights Reserved.
         </p>
 
-        <div className="a flex min-w-[235px] justify-center gap-4 ">
+        <div className="flex min-w-[235px] justify-center gap-4">
           {SOCIAL_LINKS.map(({ href, icon, name }) => (
             <a
               key={href}
@@ -35,7 +35,7 @@ const Footer = React.memo(() => {
 
         <a
           title="Privacy Policy"
-          href="#privacy-policy"
+          href="#"
           className="min-w-[235px] text-center text-sm hover:underline md:text-right"
         >
           Privacy Policy
