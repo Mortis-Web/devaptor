@@ -24,9 +24,9 @@ const Story = () => {
             <div className="story-img-mask">
               <span className="story-img-content tilt-wrapper">
                 <img
-                  src="/img/entrance.webp"
+                  src={`${import.meta.env.BASE_URL}img/entrance.webp`}
                   alt="story entrance image"
-                  className="tilt object-cover"
+                  className="tilt object-cover will-change-transform"
                   decoding="async"
                   loading="lazy"
                 />

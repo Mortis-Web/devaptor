@@ -118,6 +118,9 @@ body {
   *:focus {
     @apply outline-none;
   }
+  section {
+    @apply relative isolate;
+  }
 }
 
 a,
@@ -264,6 +267,11 @@ button {
 .indicator-line.active {
   animation: indicator-line 0.5s ease infinite;
   animation-delay: calc(var(--animation-order) * 0.1s);
+}
+#next-video,
+#current-video,
+#video-frame {
+  will-change: transform, opacity;
 }
 
 @keyframes indicator-line {

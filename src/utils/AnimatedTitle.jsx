@@ -1,7 +1,8 @@
 import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import parse from 'html-react-parser';
 import { useEffect, useRef } from 'react';
-
+ScrollTrigger.config({ limitCallbacks: true });
 const AnimatedTitle = ({ title, subTitle, containerClass = '', isInView }) => {
   const smallTitle = parse(title);
   const containerRef = useRef(null);

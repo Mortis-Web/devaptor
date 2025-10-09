@@ -37,7 +37,6 @@ const VideoGrid = () => {
           description={
             'Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni commodi odio esse omnis blanditiis, nostrum error fuga similique, repellat ea debitis ducimus voluptatibus praesentium perspiciatis beatae maiores vero quo atque?'
           }
-          isComingSoon={false}
           isInView={isInView}
         />
       </BentoTilt>
@@ -52,7 +51,6 @@ const VideoGrid = () => {
           description={
             'Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni commodi odio esse omnis blanditiis, nostrum error fuga similique, repellat ea debitis ducimus voluptatibus praesentium perspiciatis beatae maiores vero quo atque?'
           }
-          isComingSoon={false}
           isInView={isInView}
         />
       </BentoTilt>
@@ -68,14 +66,14 @@ const VideoGrid = () => {
         />
       </BentoTilt>
 
-      <BentoTilt className="bento-tilt_2 flex size-full flex-col justify-between bg-red-400 p-5">
+      <BentoTilt className="bento-tilt_2 flex size-full flex-col justify-between">
         <video
           src="videos/feature-5.webm"
           loop
           muted
           autoPlay
           playsInline
-          preload="none"
+          preload="metadata"
           className="absolute top-0 left-0 size-full object-cover object-center"
         />
       </BentoTilt>

@@ -1,45 +1,63 @@
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import AnimatedTitle from '../../utils/AnimatedTitle';
 import RoundedCorners from '../../utils/RoundedCorners';
 import useInView from './../../hooks/useInView';
-
+ScrollTrigger.config({ limitCallbacks: true });
 gsap.registerPlugin(ScrollTrigger);
 
 const About = () => {
   const [ref, isInView] = useInView();
 
   const [tiltable, setTiltable] = useState(true);
-  useGSAP(() => {
-    gsap.set('.about-image', {
-      clipPath: 'polygon(4% 0, 83% 21%, 100% 73%, 0% 100%)',
-    });
-    const clipAnim = gsap.timeline({
-      scrollTrigger: {
-        trigger: '#clip',
-        start: 'center center',
-        end: '+=800 center',
-        scrub: 0.5,
-        pin: true,
-        pinSpacing: true,
-        toggleActions: 'play none none reverse',
-        onEnter: () => {
-          setTiltable(false);
+  const tiltableRef = useRef(true);
+  useGSAP(
+    () => {
+      gsap.set('.about-image', {
+        clipPath: 'polygon(4% 0, 83% 21%, 100% 73%, 0% 100%)',
+      });
+
+      const clipAnim = gsap.timeline({
+        scrollTrigger: {
+          trigger: '#clip',
+          start: 'center center',
+          end: '+=800 center',
+          scrub: 0.5,
+          pin: true,
+          pinSpacing: true,
+          toggleActions: 'play none none reverse',
+          onEnter: () => {
+            if (tiltableRef.current) {
+              tiltableRef.current = false;
+              setTiltable(false);
+            }
+          },
+          onLeaveBack: () => {
+            if (!tiltableRef.current) {
+              tiltableRef.current = true;
+              setTiltable(true);
+            }
+          },
         },
-        onLeaveBack: () => {
-          setTiltable(true);
-        },
-      },
-    });
-    clipAnim.to('.about-image', {
-      width: '100vw',
-      height: '100vh',
-      pointerEvents: 'none',
-      clipPath: 'polygon(100% 0%, 0% 0%, 0% 100%, 100% 100%)',
-    });
-  });
+      });
+
+      clipAnim.to('.about-image', {
+        width: '100vw',
+        height: '100vh',
+        pointerEvents: 'none',
+        clipPath: 'polygon(100% 0%, 0% 0%, 0% 100%, 100% 100%)',
+      });
+
+      return () => {
+        clipAnim.scrollTrigger?.kill();
+        clipAnim.kill();
+      };
+    },
+    { dependencies: [] } // only run once
+  );
+
   return (
     <section ref={ref} id="about" className="min-h-screen">
       <article className="relative mt-36 mb-8 flex flex-col items-center gap-5">
@@ -66,11 +84,11 @@ const About = () => {
         >
           <div className={` ${tiltable ? 'tilt' : ''} about-image`}>
             <img
-              src="img/about.webp"
+              src={`${import.meta.env.BASE_URL}img/about.webp`}
               alt="Background"
-              loading='lazy'
-              decoding='async'
-              className="absolute top-0 left-0 size-full object-cover"
+              loading="lazy"
+              decoding="async"
+              className="absolute top-0 left-0 aspect-square size-full object-cover"
             />
           </div>
           {tiltable && <RoundedCorners />}
