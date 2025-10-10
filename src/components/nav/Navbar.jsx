@@ -1,4 +1,4 @@
-import gsap from 'gsap';
+import { gsap } from 'gsap';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { TiLocationArrow } from 'react-icons/ti';
 import { useWindowScroll } from 'react-use';
@@ -82,7 +82,9 @@ const Navbar = () => {
           {/* --- Left Side --- */}
           <div className="flex items-center gap-7">
             <div className="special-font text-5xl text-red-400">
-              <b>V</b>
+              <b className="tilt-wrapper">
+                <span className="tilt">V</span>
+              </b>
             </div>
 
             <Btn
@@ -103,7 +105,7 @@ const Navbar = () => {
                     aria-label={`scroll to ${link} section`}
                     title={`scroll to ${link} section`}
                     onClick={() => Lenis?.scrollTo(`#${link.toLowerCase()}`)}
-                    className="nav-hover-btn"
+                    className="nav-hover-btn [text-shadow:_1px_0_black,_-1px_0_black,_0_1px_black,_0_-1px_black]"
                   >
                     {link}
                   </button>
@@ -136,7 +138,7 @@ const Navbar = () => {
               {[1, 2, 3, 4].map(bar => (
                 <div
                   key={bar}
-                  className={`indicator-line ${isAudioPlaying ? 'active' : ''}`}
+                  className={`indicator-line ${isAudioPlaying ? 'active' : ''} [box-shadow:_1px_0_black,_-1px_0_black,_0_1px_black,_0_-1px_black]`}
                   style={{ animationDelay: `${bar * 0.1}s` }}
                 />
               ))}

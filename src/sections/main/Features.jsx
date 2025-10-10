@@ -1,8 +1,8 @@
 import { useGSAP } from '@gsap/react';
-import gsap from 'gsap';
+import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useMemo } from 'react';
-import BentoCard from '../../components/Features/BentoCard';
+import BentoCard from '../../components/features/BentoCard';
 import BentoTilt from '../../components/Features/BentoTilt';
 import VideoGrid from '../../components/Features/VideoGrid';
 import useInView from '../../hooks/useInView';
@@ -13,7 +13,7 @@ const Features = () => {
   const [ref, isInView] = useInView();
 
   const featureVideoSrc = useMemo(
-    () => `${import.meta.env.BASE_URL}videos/feature-1.webm`,
+    () => `${import.meta.env.BASE_URL}videos/feature-1-compressed.webm`,
     []
   );
 

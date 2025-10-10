@@ -1,11 +1,12 @@
 import { useGSAP } from '@gsap/react';
-import gsap from 'gsap';
+import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
 import { lazy, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { TiLocationArrow } from 'react-icons/ti';
 import useInView from '../../hooks/useInView';
 import Btn from '../../utils/Btn';
 import Loader from '../../utils/Loader';
+import VideoPreview from '../../utils/VideoPreview';
 import useLenis from './../../hooks/useLenis';
 ScrollTrigger.config({ limitCallbacks: true });
 gsap.registerPlugin(ScrollTrigger);
@@ -30,7 +31,7 @@ const Hero = () => {
     setLoadedVideos(prev => Math.min(heroVideos, prev + 1));
   };
   const getVideoSrc = index =>
-    `${import.meta.env.BASE_URL}videos/hero-${index + 1}.webm`;
+    `${import.meta.env.BASE_URL}videos/hero-${index + 1}-compressed.webm`;
 
   const videos = useMemo(
     () => ({
@@ -178,29 +179,31 @@ const Hero = () => {
       >
         <figure className="flex-center h-dvh">
           {/* Mini preview → next video thumbnail */}
-          <div className="tilt-wrapper z-50 size-80 scale-75 md:scale-100">
-            <div className="tilt absolute-center mask-clip-path relative size-full cursor-pointer overflow-hidden rounded-full">
-              <div
-                onClick={handleMiniVideoClick}
-                style={
-                  stopSpamClick
-                    ? { pointerEvents: 'none' }
-                    : { pointerEvents: 'auto' }
-                }
-                className="origin-center scale-50 opacity-0 transition-all duration-800 ease-[cubic-bezier(0.8,-0.1,0.3,1)] hover:scale-100 hover:opacity-100"
-              >
-                <video
-                  src={videos.mini}
-                  loop
-                  muted
-                  playsInline
-                  preload="metadata"
-                  loading="lazy"
-                  id="current-video"
-                  className="pointer-events-none h-72 w-80 scale-150 object-cover"
-                  onLoadedData={handleLoadedVideo}
-                />
-              </div>
+          <div className="z-50 size-100 scale-75 overflow-visible md:scale-100">
+            <div className="absolute-center mask-clip-path relative size-80 cursor-pointer rounded-xl">
+              <VideoPreview>
+                <div
+                  onClick={handleMiniVideoClick}
+                  style={
+                    stopSpamClick
+                      ? { pointerEvents: 'none' }
+                      : { pointerEvents: 'auto' }
+                  }
+                  className="origin-center scale-50 opacity-0 transition-all duration-800 ease-[cubic-bezier(0.8,-0.1,0.3,1)] hover:scale-100 hover:opacity-100"
+                >
+                  <video
+                    src={videos.mini}
+                    loop
+                    muted
+                    playsInline
+                    preload="metadata"
+                    loading="lazy"
+                    id="current-video"
+                    className="pointer-events-none size-80 scale-150 object-cover"
+                    onLoadedData={handleLoadedVideo}
+                  />
+                </div>
+              </VideoPreview>
             </div>
           </div>
 
@@ -238,14 +241,18 @@ const Hero = () => {
         </figure>
 
         {/* Text */}
-        <h1 className="special-font textAnimSlowest hero-heading text-blue-75 absolute right-5 bottom-5 z-40 mix-blend-difference">
+        <h1 className="special-font select-none textAnimSlowest hero-heading text-blue-75 absolute right-5 bottom-5 z-40 mix-blend-difference">
           c<b>o</b>ding
         </h1>
 
         <div className="absolute top-0 left-0 z-40 size-full">
           <div className="mt-25 px-5 sm:mt-20 sm:px-10">
-            <h1 className="special-font textAnim hero-heading text-blue-100">
-              de<b className="text-red-400">v</b>aptor
+            <h1 className="special-font textAnim hero-heading flex text-blue-100">
+              de
+              <b className="tilt-wrapper text-red-400">
+                <span className="tilt inline w-fit">v</span>
+              </b>
+              aptor
             </h1>
             <p className="font-robert-regular textAnimSlow my-2.5 max-w-64 text-blue-100 sm:my-5">
               Enter The Meta-game Layer <br /> Unleash The Play Economy
@@ -254,7 +261,7 @@ const Hero = () => {
               id="watch-trailer"
               title="Watch Trailer"
               leftIcon={<TiLocationArrow />}
-              containerClass="bg-yellow-300 textAnimSlowest flex-center gap-1"
+              containerClass="bg-yellow-300 hover:bg-violet-50 textAnimSlowest flex-center gap-1"
             />
           </div>
         </div>

@@ -1,6 +1,6 @@
 import { TiLocationArrow } from 'react-icons/ti';
+import BentoCard from '../../components/features/BentoCard';
 import useInView from '../../hooks/useInView';
-import BentoCard from './BentoCard';
 import BentoTilt from './BentoTilt';
 
 const VideoGrid = () => {
@@ -12,7 +12,7 @@ const VideoGrid = () => {
     >
       <BentoTilt className="bento-tilt_1 row-span-1 md:col-span-1 md:row-span-2">
         <BentoCard
-          src="videos/feature-2.webm"
+          src="videos/feature-2-compressed.webm"
           title={
             <>
               zig<b>m</b>a
@@ -28,7 +28,7 @@ const VideoGrid = () => {
 
       <BentoTilt className="bento-tilt_1 xs:ms-32 row-span-1 ms-14 md:col-span-1 md:ms-0">
         <BentoCard
-          src="videos/feature-3.webm"
+          src="videos/feature-3-compressed.webm"
           title={
             <>
               Ne<b>x</b>us
@@ -42,7 +42,7 @@ const VideoGrid = () => {
       </BentoTilt>
       <BentoTilt className="bento-tilt_1 row-span-1 me-14 md:col-span-1 md:me-0">
         <BentoCard
-          src="videos/feature-4.webm"
+          src="videos/feature-4-compressed.webm"
           title={
             <>
               Az<b>u</b>l
@@ -61,14 +61,12 @@ const VideoGrid = () => {
         >
           M<b>o</b>re C<b>o</b>ming S<b>oo</b>n!
         </h1>
-        <TiLocationArrow
-          className={`${isInView ? 'textAnimSlowest' : ''} m-5 scale-400 self-end md:scale-600`}
-        />
+        <TiLocationArrow className={`m-5 scale-400 self-end md:scale-600`} />
       </BentoTilt>
 
       <BentoTilt className="bento-tilt_2 flex size-full flex-col justify-between">
         <video
-          src="videos/feature-5.webm"
+          src="videos/feature-5-compressed.webm"
           loop
           muted
           autoPlay

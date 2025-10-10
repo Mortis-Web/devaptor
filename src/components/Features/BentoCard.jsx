@@ -43,7 +43,7 @@ const BentoCard = memo(
                 id="coming-soon"
                 title="Coming Soon"
                 rightIcon={<TiLocationArrow />}
-                containerClass={`mt-auto flex items-center justify-center gap-1 bg-black text-white/50 hover:text-white transition-all duration-700 ${
+                containerClass={`mt-auto flex !bg-black items-center justify-center gap-1 bg-black text-white/50 hover:text-white transition-all duration-700 ${
                   isInView ? 'textAnimSlowest' : 'opacity-0 translate-y-3'
                 }`}
               />
