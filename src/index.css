@@ -37,8 +37,8 @@ body {
   @font-face {
     font-family: 'circular-web';
     src:
-      url('/fonts/circularweb-book.woff2') format('woff2'),
-      url('/fonts/circularweb-book.woff') format('woff');
+      url('fonts/circularweb-book.woff2') format('woff2'),
+      url('fonts/circularweb-book.woff') format('woff');
     font-style: normal;
     font-display: swap;
   }
@@ -46,8 +46,8 @@ body {
   @font-face {
     font-family: 'general';
     src:
-      url('/fonts/general.woff2') format('woff2'),
-      url('/fonts/general.woff') format('woff');
+      url('fonts/general.woff2') format('woff2'),
+      url('fonts/general.woff') format('woff');
     font-style: normal;
     font-display: swap;
   }
@@ -55,8 +55,8 @@ body {
   @font-face {
     font-family: 'robert-regular';
     src:
-      url('/fonts/robert-regular.woff2') format('woff2'),
-      url('/fonts/robert-regular.woff') format('woff');
+      url('fonts/robert-regular.woff2') format('woff2'),
+      url('fonts/robert-regular.woff') format('woff');
     font-style: normal;
     font-display: swap;
   }
@@ -64,8 +64,8 @@ body {
   @font-face {
     font-family: 'robert-medium';
     src:
-      url('/fonts/robert-medium.woff2') format('woff2'),
-      url('/fonts/robert-medium.woff') format('woff');
+      url('fonts/robert-medium.woff2') format('woff2'),
+      url('fonts/robert-medium.woff') format('woff');
     font-style: normal;
     font-display: swap;
   }
@@ -73,8 +73,8 @@ body {
   @font-face {
     font-family: 'zentry';
     src:
-      url('/fonts/zentry-regular.woff2') format('woff2'),
-      url('/fonts/zentry-regular.woff') format('woff');
+      url('fonts/zentry-regular.woff2') format('woff2'),
+      url('fonts/zentry-regular.woff') format('woff');
     font-style: normal;
     font-display: swap;
   }
@@ -325,7 +325,7 @@ button {
   bottom: 0;
   left: 0;
   animation: wobble1 var(--uib-speed) infinite ease-in-out;
-  will-change: transform,opacity;
+  will-change: transform, opacity;
   animation-delay: calc(var(--uib-speed) * -0.3);
 }
 
@@ -341,8 +341,7 @@ button {
   left: 0;
   animation: wobble1 var(--uib-speed) infinite calc(var(--uib-speed) * -0.15)
     ease-in-out;
-  will-change: transform,opacity;
-
+  will-change: transform, opacity;
 }
 
 .three-body__dot:nth-child(3) {
@@ -355,8 +354,7 @@ button {
   top: 0;
   left: 0;
   animation: wobble2 var(--uib-speed) infinite ease-in-out;
-  will-change: transform,opacity;
-
+  will-change: transform, opacity;
 }
 
 @keyframes spin78236 {

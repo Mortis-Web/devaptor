@@ -105,11 +105,5 @@ export default defineConfig(({ mode }) => ({
 
   experimental: {
     prefetchLinkedAssets: true,
-    renderBuiltUrl(filename, { hostType }) {
-      if (hostType === 'js') {
-        return { runtime: `__publicAssetsBase__ + '${filename}'` };
-      }
-      return filename;
-    },
   },
 }));
