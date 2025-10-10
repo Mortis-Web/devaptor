@@ -210,11 +210,11 @@ const Hero = () => {
           {/* Hidden transition video */}
           <video
             ref={nextVideoRef}
-            preload="metadata"
+            preload="auto"
+            fetchpriority="high"
             src={videos.next}
             loop
             muted
-            loading="lazy"
             playsInline
             id="next-video"
             className="absolute-center pointer-events-none invisible z-20 size-64 object-cover object-center"
@@ -241,7 +241,7 @@ const Hero = () => {
         </figure>
 
         {/* Text */}
-        <h1 className="special-font select-none textAnimSlowest hero-heading text-blue-75 absolute right-5 bottom-5 z-40 mix-blend-difference">
+        <h1 className="special-font textAnimSlowest hero-heading text-blue-75 absolute right-5 bottom-5 z-40 mix-blend-difference select-none">
           c<b>o</b>ding
         </h1>
 
