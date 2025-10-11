@@ -10,7 +10,9 @@ import useInView from '../../hooks/useInView';
 gsap.registerPlugin(ScrollTrigger);
 
 const Features = () => {
-  const [ref, isInView] = useInView();
+  const [ref, isInView] = useInView({
+    rootMargin: '-150px 0px 0px 0px', // trigger 150px *above* the card
+  });
 
   const featureVideoSrc = useMemo(
     () => `${import.meta.env.BASE_URL}videos/feature-1-compressed.webm`,
@@ -40,7 +42,7 @@ const Features = () => {
 
   return (
     <section ref={ref} id="features" className="pb-30 sm:pb-40">
-      <div className="container mx-auto px-3 md:px-10">
+      <div className="mx-auto max-w-[1536px] px-3 md:px-10">
         <div className="font-circular-web px-5 py-24">
           <p
             className={`${
@@ -65,6 +67,7 @@ const Features = () => {
         <BentoTilt className="border-hsla relative mb-7 h-96 w-full overflow-hidden rounded-md duration-200 ease-out md:h-[65vh]">
           <BentoCard
             src={featureVideoSrc}
+            poster={`${import.meta.env.BASE_URL}videos/feature-1-compressed.webm`}
             title={
               <>
                 radi<b>n</b>t

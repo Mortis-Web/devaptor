@@ -3,7 +3,7 @@ import { TiLocationArrow } from 'react-icons/ti';
 import Btn from '../../utils/Btn';
 
 const BentoCard = memo(
-  ({ src, title, description, isComingSoon, ref, isInView }) => {
+  ({ src, poster, title, description, isComingSoon, ref, isInView }) => {
     const videoRef = useRef(null);
 
     // 🎥 Pause/Play video when visibility changes
@@ -26,7 +26,8 @@ const BentoCard = memo(
         {/* 🎬 Background Video */}
         <video
           ref={videoRef}
-          src={isInView ? src : undefined}
+          src={src}
+          poster={poster}
           loop
           muted
           autoPlay={isInView}

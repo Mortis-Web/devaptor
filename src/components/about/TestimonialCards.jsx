@@ -32,7 +32,7 @@ const TestimonialCards = ({ readyToAnimateCard }) => {
   const animClass = readyToAnimateCard ? 'anim' : 'opacity-0';
 
   return (
-    <section className="pointer-events-none absolute inset-0 flex h-screen w-full items-center justify-center gap-6 overflow-hidden">
+    <section className="pointer-events-none absolute inset-0 mx-auto flex h-screen w-full max-w-[1536px] items-center justify-center gap-6 overflow-hidden">
       {cards.map((card, index) => (
         <div
           key={index}

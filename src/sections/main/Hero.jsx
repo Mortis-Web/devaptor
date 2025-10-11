@@ -180,6 +180,7 @@ const Hero = () => {
       {/* indicator glass box */}
 
       <div
+        ref={holeRef}
         id="gravity-hole"
         className="pointer-events-none absolute inset-0 z-20 m-auto size-40 rounded-full backdrop-blur-[4px] sm:size-60"
       >
@@ -188,7 +189,7 @@ const Hero = () => {
           <DotLottieReact
             src={`${import.meta.env.BASE_URL}lottie/click.lottie`}
             loop
-            autoplay
+            autoplay={isInView}
             className={`absolute inset-0 z-10 m-0 duration-300`}
           />
         )}
@@ -231,8 +232,9 @@ const Hero = () => {
           {/* Hidden transition video */}
           <video
             ref={nextVideoRef}
-            preload="auto"
-            fetchPriority="high"
+            preload="metadata"
+            loading="lazy"
+            fetchPriority="low"
             src={videos.next}
             loop
             muted
@@ -247,7 +249,7 @@ const Hero = () => {
             <video
               ref={currentVideoRef}
               src={videos.main}
-              autoPlay
+              autoPlay={isInView}
               muted
               loop
               loading="eager"
@@ -255,6 +257,7 @@ const Hero = () => {
               preload="auto"
               id="main-video"
               playsInline
+              poster={`${import.meta.env.BASE_URL}img/poster.webp`}
               onLoadedData={handleLoadedVideo}
               className="tilt pointer-events-none absolute top-0 left-0 size-full object-cover object-center"
             />
