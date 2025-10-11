@@ -29,7 +29,7 @@ export default defineConfig(({ mode }) => ({
 
   build: {
     target: 'esnext',
-    sourcemap: mode !== 'production', // source maps only in dev
+    sourcemap: true, // source maps allowed
     minify: 'esbuild', // fast, efficient minification
     cssMinify: 'lightningcss',
     cssCodeSplit: true,

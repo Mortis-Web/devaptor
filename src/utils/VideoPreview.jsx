@@ -22,7 +22,7 @@ export const VideoPreview = ({ children }) => {
         rotationY: xOffset / 2, // Add 3D rotation effect
         rotationX: -yOffset / 2,
         transformPerspective: 500, // Perspective for realistic 3D effect
-        duration: 1,
+        duration: 1.5,
         ease: 'power1.out',
       });
 
@@ -30,7 +30,7 @@ export const VideoPreview = ({ children }) => {
       gsap.to(contentRef.current, {
         x: -xOffset,
         y: -yOffset,
-        duration: 1,
+        duration: 1.5,
         ease: 'power1.out',
       });
     }
@@ -63,14 +63,14 @@ export const VideoPreview = ({ children }) => {
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
-      className="absolute z-50 size-full overflow-hidden rounded-lg"
+      className="absolute z-50 size-full overflow-clip rounded-xl"
       style={{
         perspective: '1200px',
       }}
     >
       <div
         ref={contentRef}
-        className="origin-center rounded-lg"
+        className="origin-center rounded-xl"
         style={{
           transformStyle: 'preserve-3d',
         }}

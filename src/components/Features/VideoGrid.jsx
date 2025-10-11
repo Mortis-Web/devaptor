@@ -6,10 +6,7 @@ import BentoTilt from './BentoTilt';
 const VideoGrid = () => {
   const [ref, isInView] = useInView();
   return (
-    <section
-      ref={ref}
-      className="grid min-h-[135vh] grid-cols-2 grid-rows-3 gap-7"
-    >
+    <section className="grid min-h-[135vh] grid-cols-2 grid-rows-3 gap-7">
       <BentoTilt className="bento-tilt_1 row-span-1 md:col-span-1 md:row-span-2">
         <BentoCard
           src="videos/feature-2-compressed.webm"
@@ -22,6 +19,7 @@ const VideoGrid = () => {
             'Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni commodi odio esse omnis blanditiis, nostrum error fuga similique, repellat ea debitis ducimus voluptatibus praesentium perspiciatis beatae maiores vero quo atque?'
           }
           isComingSoon
+          ref={ref}
           isInView={isInView}
         />
       </BentoTilt>
@@ -37,6 +35,7 @@ const VideoGrid = () => {
           description={
             'Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni commodi odio esse omnis blanditiis, nostrum error fuga similique, repellat ea debitis ducimus voluptatibus praesentium perspiciatis beatae maiores vero quo atque?'
           }
+          ref={ref}
           isInView={isInView}
         />
       </BentoTilt>
@@ -51,6 +50,7 @@ const VideoGrid = () => {
           description={
             'Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni commodi odio esse omnis blanditiis, nostrum error fuga similique, repellat ea debitis ducimus voluptatibus praesentium perspiciatis beatae maiores vero quo atque?'
           }
+          ref={ref}
           isInView={isInView}
         />
       </BentoTilt>
@@ -66,12 +66,12 @@ const VideoGrid = () => {
 
       <BentoTilt className="bento-tilt_2 flex size-full flex-col justify-between">
         <video
-          src="videos/feature-5-compressed.webm"
+          src={isInView ? 'videos/feature-5-compressed.webm' : undefined}
           loop
           muted
           autoPlay
           playsInline
-          preload="metadata"
+          preload={isInView ? 'metadata' : 'none'}
           className="absolute top-0 left-0 size-full object-cover object-center"
         />
       </BentoTilt>

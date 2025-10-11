@@ -142,12 +142,33 @@ const Hero = () => {
     return () => parent.removeEventListener('mousemove', moveGradient);
   }, []);
 
-  // pause hidden videos
+  // ✅ Handle video play/pause visibility
   useEffect(() => {
-    if (nextVideoRef.current && currentVideoRef.current) {
-      nextVideoRef.current.pause();
-      currentVideoRef.current.play();
-    }
+    const video = currentVideoRef.current;
+    if (!video) return;
+
+    let debounceTimeout;
+    const playSafe = async () => {
+      try {
+        await video.play();
+      } catch (err) {
+        if (err.name !== 'AbortError') console.warn('play failed:', err);
+      }
+    };
+
+    clearTimeout(debounceTimeout);
+    debounceTimeout = setTimeout(() => {
+      if (isInView) playSafe();
+      else video.pause();
+    }, 120);
+
+    return () => clearTimeout(debounceTimeout);
+  }, [isInView]);
+
+  // ✅ Pause hidden transition video
+  useEffect(() => {
+    if (nextVideoRef.current) nextVideoRef.current.pause();
+    if (currentVideoRef.current) currentVideoRef.current.play().catch(() => {});
   }, [currentIndex]);
 
   return (
@@ -172,7 +193,7 @@ const Hero = () => {
           />
         )}
       </div>
-      {isLoading && <Loader />}
+      {isLoading && <Loader containerClass={'bg-violet-50'} />}
       <article
         id="video-frame"
         className="bg-blue-75 relative z-10 h-dvh overflow-hidden"
@@ -180,7 +201,7 @@ const Hero = () => {
         <figure className="flex-center h-dvh">
           {/* Mini preview → next video thumbnail */}
           <div className="z-50 size-100 scale-75 overflow-visible md:scale-100">
-            <div className="absolute-center mask-clip-path relative size-80 cursor-pointer rounded-xl">
+            <div className="absolute-center relative size-80 cursor-pointer rounded-xl">
               <VideoPreview>
                 <div
                   onClick={handleMiniVideoClick}
@@ -211,7 +232,7 @@ const Hero = () => {
           <video
             ref={nextVideoRef}
             preload="auto"
-            fetchpriority="high"
+            fetchPriority="high"
             src={videos.next}
             loop
             muted
@@ -230,7 +251,7 @@ const Hero = () => {
               muted
               loop
               loading="eager"
-              fetchpriority="high"
+              fetchPriority="high"
               preload="auto"
               id="main-video"
               playsInline

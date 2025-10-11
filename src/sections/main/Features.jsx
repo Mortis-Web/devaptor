@@ -74,6 +74,7 @@ const Features = () => {
               'Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni commodi odio esse omnis blanditiis, nostrum error fuga similique, repellat ea debitis ducimus voluptatibus praesentium perspiciatis beatae maiores vero quo atque?'
             }
             isComingSoon
+            ref={ref}
             isInView={isInView}
           />
         </BentoTilt>

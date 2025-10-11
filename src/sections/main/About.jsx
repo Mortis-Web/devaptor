@@ -2,6 +2,7 @@ import { useGSAP } from '@gsap/react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
 import { useRef, useState } from 'react';
+import TestimonialCards from '../../components/about/TestimonialCards';
 import AnimatedTitle from '../../utils/AnimatedTitle';
 import RoundedCorners from '../../utils/RoundedCorners';
 import useInView from './../../hooks/useInView';
@@ -10,24 +11,33 @@ gsap.registerPlugin(ScrollTrigger);
 
 const About = () => {
   const [ref, isInView] = useInView();
-
+  const testimonialRef = useRef(null);
   const [tiltable, setTiltable] = useState(true);
   const tiltableRef = useRef(true);
+  const [readyToAnimateCard, setReadyToAnimateCard] = useState(false);
   useGSAP(
     () => {
       gsap.set('.about-image', {
         clipPath: 'polygon(4% 0, 83% 21%, 100% 73%, 0% 100%)',
+      });
+      gsap.set(testimonialRef.current, {
+        opacity: 0,
+        y: 50,
+        pointerEvents: 'none',
       });
 
       const clipAnim = gsap.timeline({
         scrollTrigger: {
           trigger: '#clip',
           start: 'center center',
-          end: '+=800 center',
+          end: '+=500 center',
           scrub: 0.5,
           pin: true,
           pinSpacing: true,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
           toggleActions: 'play none none reverse',
+
           onEnter: () => {
             if (tiltableRef.current) {
               tiltableRef.current = false;
@@ -39,16 +49,35 @@ const About = () => {
               tiltableRef.current = true;
               setTiltable(true);
             }
+            setReadyToAnimateCard(false);
           },
         },
       });
 
-      clipAnim.to('.about-image', {
-        width: '100vw',
-        height: '100vh',
-        pointerEvents: 'none',
-        clipPath: 'polygon(100% 0%, 0% 0%, 0% 100%, 100% 100%)',
-      });
+      clipAnim
+        .to('.about-image', {
+          width: '100vw',
+          height: '100vh',
+          pointerEvents: 'none',
+          clipPath: 'polygon(100% 0%, 0% 0%, 0% 100%, 100% 100%)',
+          onComplete: () => {
+            setReadyToAnimateCard(true);
+          },
+          onReverseComplete: () => {
+            setReadyToAnimateCard(false);
+          },
+        })
+        .to(
+          testimonialRef.current,
+          {
+            opacity: 1,
+            y: 0,
+            ease: 'power2.out',
+            duration: 1,
+            pointerEvents: 'auto',
+          },
+          '-=10%'
+        );
 
       return () => {
         clipAnim.scrollTrigger?.kill();
@@ -59,7 +88,7 @@ const About = () => {
   );
 
   return (
-    <section ref={ref} id="about" className="min-h-screen">
+    <section ref={ref} id="about" className="min-h-screen overflow-hidden">
       <article className="relative mt-24 mb-8 flex flex-col items-center gap-5 lg:mt-30">
         <AnimatedTitle
           title={`Welcome To de<b class="text-red-400">v</b>aptor`}
@@ -78,7 +107,7 @@ const About = () => {
         </div>
       </article>
 
-      <article className="relative h-dvh" id="clip">
+      <article className="relative h-screen overflow-hidden" id="clip">
         <figure
           className={`${tiltable ? 'tilt-wrapper textAnimSlower' : ''} xs:w-fit relative mx-auto w-9/10 [filter:url('#flt_tag')]`}
         >
@@ -92,6 +121,12 @@ const About = () => {
             />
           </div>
           {tiltable && <RoundedCorners />}
+        </figure>
+        <figure
+          ref={testimonialRef}
+          className="absolute inset-0 m-auto flex h-screen items-center justify-center overflow-hidden bg-black/75 opacity-0"
+        >
+          <TestimonialCards readyToAnimateCard={readyToAnimateCard} />
         </figure>
       </article>
     </section>

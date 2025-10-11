@@ -1,19 +1,37 @@
-import { memo } from 'react';
+import { memo, useEffect, useRef } from 'react';
 import { TiLocationArrow } from 'react-icons/ti';
 import Btn from '../../utils/Btn';
 
 const BentoCard = memo(
-  ({ src, title, description, isComingSoon, isInView }) => {
+  ({ src, title, description, isComingSoon, ref, isInView }) => {
+    const videoRef = useRef(null);
+
+    // 🎥 Pause/Play video when visibility changes
+    useEffect(() => {
+      const video = videoRef.current;
+      if (!video) return;
+
+      if (isInView) {
+        video.play().catch(() => {});
+      } else {
+        video.pause();
+      }
+    }, [isInView]);
+
     return (
-      <div className="relative h-full w-full overflow-hidden">
+      <div
+        ref={ref}
+        className="relative h-full min-h-[265px] w-full overflow-hidden"
+      >
         {/* 🎬 Background Video */}
         <video
-          src={src}
+          ref={videoRef}
+          src={isInView ? src : undefined}
           loop
           muted
-          autoPlay
+          autoPlay={isInView}
           playsInline
-          preload="metadata"
+          preload={isInView ? 'metadata' : 'none'}
           className="pointer-events-none absolute inset-0 h-full w-full object-cover object-center"
         />
 
@@ -43,7 +61,7 @@ const BentoCard = memo(
                 id="coming-soon"
                 title="Coming Soon"
                 rightIcon={<TiLocationArrow />}
-                containerClass={`mt-auto flex !bg-black items-center justify-center gap-1 bg-black text-white/50 hover:text-white transition-all duration-700 ${
+                containerClass={`mt-auto flex !bg-black items-center justify-center mt-4 gap-1 bg-black text-white/50 hover:text-white transition-all duration-700 ${
                   isInView ? 'textAnimSlowest' : 'opacity-0 translate-y-3'
                 }`}
               />
