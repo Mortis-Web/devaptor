@@ -19,18 +19,6 @@ const DotLottieReact = lazy(() =>
 const Hero = () => {
   const [ref, isInView] = useInView();
   let Lenis = useLenis();
-  useEffect(() => {
-    if (!Lenis) return;
-    // Sync ScrollTrigger with Lenis
-    Lenis.on('scroll', ScrollTrigger.update);
-
-    gsap.ticker.add(time => {
-      Lenis.raf(time * 1000);
-    });
-
-    gsap.ticker.lagSmoothing(0);
-  }, [Lenis]);
-
   const [currentIndex, setCurrentIndex] = useState(0);
   const [hasClicked, setHasClicked] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
