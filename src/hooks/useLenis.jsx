@@ -1,9 +1,9 @@
 // hooks/useLenis.js
 import Lenis from '@studio-freight/lenis';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef } from 'react';
 
 export default function useLenis() {
-  const [lenis, setLenis] = useState(null);
+  const lenis = useRef(null);
 
   useEffect(() => {
     const lenisInstance = new Lenis({
@@ -14,12 +14,13 @@ export default function useLenis() {
       direction: 'vertical',
     });
 
-    setLenis(lenisInstance);
+    lenis.current = lenisInstance;
 
-    function raf(time) {
+    const raf = time => {
       lenisInstance.raf(time);
       requestAnimationFrame(raf);
-    }
+    };
+
     requestAnimationFrame(raf);
 
     return () => {
@@ -27,5 +28,5 @@ export default function useLenis() {
     };
   }, []);
 
-  return lenis;
+  return lenis.current;
 }

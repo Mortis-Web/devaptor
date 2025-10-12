@@ -41,8 +41,8 @@ const Features = () => {
   );
 
   return (
-    <section ref={ref} id="features" className="pb-30 sm:pb-40">
-      <div className="mx-auto max-w-[1536px] px-3 md:px-10">
+    <section ref={ref} id="features" className="pb-30">
+      <div className="mx-auto px-3 md:px-10">
         <div className="font-circular-web px-5 py-24">
           <p
             className={`${

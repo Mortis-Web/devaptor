@@ -27,12 +27,12 @@ const BentoCard = memo(
         <video
           ref={videoRef}
           src={src}
-          poster={poster}
+          // poster={poster}
           loop
           muted
           autoPlay={isInView}
           playsInline
-          preload={isInView ? 'metadata' : 'none'}
+          preload="metadata"
           className="pointer-events-none absolute inset-0 h-full w-full object-cover object-center"
         />
 

@@ -6,7 +6,7 @@ import BentoTilt from './BentoTilt';
 const VideoGrid = () => {
   const [ref, isInView] = useInView();
   return (
-    <section className="grid min-h-[135vh] grid-cols-2 grid-rows-3 gap-7">
+    <section className="grid min-h-[135vh] grid-cols-2 grid-rows-3 gap-7 xl:min-h-screen">
       <BentoTilt className="bento-tilt_1 row-span-1 md:col-span-1 md:row-span-2">
         <BentoCard
           src="videos/feature-2-compressed.webm"

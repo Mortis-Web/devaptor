@@ -15,9 +15,22 @@ const DotLottieReact = lazy(() =>
     default: module.DotLottieReact,
   }))
 );
+
 const Hero = () => {
   const [ref, isInView] = useInView();
   let Lenis = useLenis();
+  useEffect(() => {
+    if (!Lenis) return;
+    // Sync ScrollTrigger with Lenis
+    Lenis.on('scroll', ScrollTrigger.update);
+
+    gsap.ticker.add(time => {
+      Lenis.raf(time * 1000);
+    });
+
+    gsap.ticker.lagSmoothing(0);
+  }, [Lenis]);
+
   const [currentIndex, setCurrentIndex] = useState(0);
   const [hasClicked, setHasClicked] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -232,12 +245,13 @@ const Hero = () => {
           {/* Hidden transition video */}
           <video
             ref={nextVideoRef}
+            src={videos.next}
             preload="metadata"
             loading="lazy"
             fetchPriority="low"
-            src={videos.next}
-            loop
+            autoPlay={isInView}
             muted
+            loop
             playsInline
             id="next-video"
             className="absolute-center pointer-events-none invisible z-20 size-64 object-cover object-center"

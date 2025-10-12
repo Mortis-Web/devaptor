@@ -126,7 +126,10 @@ const About = () => {
           ref={testimonialRef}
           className="absolute inset-0 m-auto flex h-screen items-center justify-center overflow-hidden bg-black/75 opacity-0"
         >
-          <TestimonialCards readyToAnimateCard={readyToAnimateCard} />
+          <TestimonialCards
+            readyToAnimateCard={readyToAnimateCard}
+            isInView={isInView}
+          />
         </figure>
       </article>
     </section>

@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 
 const useInView = (options = {}) => {
   const {
-    threshold = 0.2,
+    threshold = 0.1,
     root = null,
     rootMargin = '0px',
     once = false,
