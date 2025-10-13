@@ -24,6 +24,8 @@ const About = () => {
         opacity: 0,
         y: 50,
         pointerEvents: 'none',
+        clipPath: 'polygon(96% 0, 17% 21%, 0% 73%, 100% 100%)',
+        scale: 0.5,
       });
 
       const clipAnim = gsap.timeline({
@@ -71,9 +73,11 @@ const About = () => {
           testimonialRef.current,
           {
             opacity: 1,
+            scale: 1,
             y: 0,
             ease: 'power2.out',
             duration: 1,
+            clipPath: 'polygon(100% 0%, 0% 0%, 0% 100%, 100% 100%)',
             pointerEvents: 'auto',
           },
           '-=10%'
@@ -124,7 +128,7 @@ const About = () => {
         </figure>
         <figure
           ref={testimonialRef}
-          className="absolute inset-0 m-auto flex h-screen items-center justify-center overflow-hidden bg-black/75 opacity-0"
+          className="absolute inset-0 m-auto flex h-screen origin-bottom items-center justify-center overflow-hidden bg-black/75"
         >
           <TestimonialCards
             readyToAnimateCard={readyToAnimateCard}

@@ -11,8 +11,8 @@ const MainPage = () => {
       <Hero />
       <About />
       <Features />
-      {/* <Statis /> */}
       <Story />
+      <Statis />
       <Contact />
     </main>
   );

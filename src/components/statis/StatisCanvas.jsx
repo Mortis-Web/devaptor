@@ -1,8 +1,9 @@
-import { Environment, OrbitControls } from '@react-three/drei';
+import { OrbitControls } from '@react-three/drei';
 import { Canvas, useThree } from '@react-three/fiber';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import {
+  lazy,
   Suspense,
   useCallback,
   useEffect,
@@ -11,12 +12,10 @@ import {
   useState,
 } from 'react';
 import CanvasLoader from '../../utils/CanvasLoader';
-import BlackHoleModel from './BlackHoleModel';
 
+const BlackHoleModel = lazy(() => import('./BlackHoleModel'));
 gsap.registerPlugin(ScrollTrigger);
-ScrollTrigger.config({ limitCallbacks: true });
 
-// 🧩 Responsive + InView scale hook
 const useResponsiveScale = isInView => {
   const getScale = useCallback(() => {
     if (window.matchMedia('(max-width: 640px)').matches)
@@ -31,7 +30,6 @@ const useResponsiveScale = isInView => {
   useEffect(() => {
     const handleResize = () => setScale(getScale());
     window.addEventListener('resize', handleResize);
-    setScale(getScale());
     return () => window.removeEventListener('resize', handleResize);
   }, [getScale]);
 
@@ -40,92 +38,87 @@ const useResponsiveScale = isInView => {
 
 const Scene = ({ isInView, sectionRef }) => {
   const { camera } = useThree();
+  const modelRef = useRef();
   const baseScale = useResponsiveScale(isInView);
-  const modelRef = useRef(null);
 
-  // 🎛️ Model props
   const modelProps = useMemo(
     () => ({
       scale: baseScale,
-      rotation: [0, Math.PI / 2, 0],
+      rotation: [Math.PI / 90, -Math.PI / 3, Math.PI / 18],
       position: [0, 0, 0],
     }),
     [baseScale]
   );
 
-  // 🎥 ScrollTrigger parallax effect
   useEffect(() => {
-    if (!sectionRef.current) return;
+    if (!isInView || !sectionRef.current || !modelRef.current) return;
 
-    const ctx = gsap.context(() => {
-      const interval = setInterval(() => {
-        if (modelRef.current) {
-          clearInterval(interval); // wait until model loads
-
-          const tl = gsap.timeline({
-            scrollTrigger: {
-              trigger: sectionRef.current,
-              start: 'center center',
-              end: '+=700 center',
-              scrub: 1.5,
-              pin: true,
-              anticipatePin: 1,
-            },
-          });
-
-          // Move camera slightly for parallax
-          tl.to(camera.position, {
-            z: 2.5,
-            y: 0.5,
-            ease: 'power2.inOut',
-          });
-
-          // Rotate the black hole model
-          tl.to(
-            modelRef.current.rotation,
-            {
-              y: `+=${Math.PI / 1.5}`,
-              ease: 'power2.inOut',
-            },
-            0
-          );
-        }
-      }, 100); // check every 100ms
-
-      return () => clearInterval(interval);
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: 'top 70%',
+        once: true,
+      },
     });
 
-    return () => ctx.revert();
-  }, [camera, sectionRef]);
+    tl.to(camera.position, {
+      z: 3.5,
+      y: 0.5,
+      duration: 2,
+      ease: 'power3.inOut',
+    });
+
+    tl.to(
+      modelRef.current.rotation,
+      { y: `+=${Math.PI / 1.5}`, duration: 2.5, ease: 'power3.inOut' },
+      '<'
+    );
+  }, [camera, isInView, sectionRef]);
 
   return (
     <>
-      {/* 💡 Lighting & Environment */}
+      {/* Softer lights, cheaper environment */}
       <ambientLight intensity={1.2} />
-      <directionalLight position={[5, 5, 5]} intensity={2} />
-      <Environment preset="city" />
+      <directionalLight position={[5, 5, 5]} intensity={1.8} />
 
-      {/* 🌀 Model */}
       <Suspense fallback={<CanvasLoader />}>
         <BlackHoleModel ref={modelRef} {...modelProps} />
       </Suspense>
 
-      {/* 🖱️ Orbit controls (disabled zoom) */}
+      {/* use a lightweight environment */}
+      {/* {isInView && <Environment preset="sunset" blur={0.8} />} */}
+
       <OrbitControls enableZoom={false} />
     </>
   );
 };
 
 const StatisCanvas = ({ isInView }) => {
-  const sectionRef = useRef(null);
+  const sectionRef = useRef();
 
   return (
     <section
       ref={sectionRef}
       id="blackhole-section"
-      className="relative h-[130vh] w-full"
+      className="relative h-[70vh] md:h-screen w-full overflow-hidden"
     >
-      <Canvas shadows camera={{ position: [0, 1, 5], fov: 50 }} dpr={[1, 2]}>
+      <Canvas
+        camera={{ position: [0, 1, 5], fov: 50 }}
+        shadows={false}
+        frameloop={isInView ? 'always' : 'never'}
+        dpr={[1, 1.5]} // ✅ lower pixel density
+        gl={{
+          antialias: false,
+          preserveDrawingBuffer: false,
+          powerPreference: 'low-power', // ✅ prevents WebGL drop
+        }}
+        onCreated={({ gl }) => {
+          gl.getContext().canvas.addEventListener('webglcontextlost', e => {
+            e.preventDefault();
+            console.warn('⚠️ WebGL context lost');
+          });
+        }}
+      >
         <Scene isInView={isInView} sectionRef={sectionRef} />
       </Canvas>
     </section>

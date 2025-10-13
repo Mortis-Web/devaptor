@@ -8,7 +8,7 @@ const TestimonialCards = ({ readyToAnimateCard, isInView }) => {
     () => [
       {
         cover: `${import.meta.env.BASE_URL}img/gallery-5.webp`,
-        title: `${import.meta.env.BASE_URL}img/dark_rider-title.webp`,
+        title: `${import.meta.env.BASE_URL}img/spiderman.webp`,
         char: `${import.meta.env.BASE_URL}img/gallery-1.webp`,
       },
       {
@@ -39,7 +39,7 @@ const TestimonialCards = ({ readyToAnimateCard, isInView }) => {
             <div
               key={index}
               ref={el => setCardRef(el, index)}
-              className={`card ${animClass} ${activeIndex === index ? 'active' : ''} will-change-opacity pointer-events-auto will-change-transform`}
+              className={`card ${animClass} ${activeIndex === index ? 'active' : ''} will-change-opacity pointer-events-auto brightness-110 drop-shadow-[0px_0px_10px_rgba(255,255,255,0.35)] will-change-transform`}
               style={{ animationDelay: `${(index + 1) * 0.25}s` }}
               onMouseEnter={() => setActiveIndex(index)}
               onClick={() => setActiveIndex(null)}

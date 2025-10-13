@@ -6,7 +6,11 @@ import useInView from './../../hooks/useInView';
 const Story = () => {
   const [ref, isInView] = useInView();
   return (
-    <section id="story" ref={ref} className="min-h-dvh bg-black text-blue-50">
+    <section
+      id="story"
+      ref={ref}
+      className="min-h-screen bg-black pb-24 text-blue-50"
+    >
       <article className="flex size-full flex-col items-center pb-10">
         <div className="relative size-full">
           <AnimatedTitle
@@ -38,10 +42,10 @@ const Story = () => {
       </article>
 
       <article
-        className={`-mt-80 ${isInView ? 'textAnimSlowest' : 'opacity-0'} flex w-full justify-center md:me-44 md:-mt-64 md:justify-end`}
+        className={`-mt-80 ${isInView ? 'textAnimSlowest' : 'opacity-0'} flex w-full justify-center md:me-44 md:-mt-70`}
       >
-        <div className="mb-10 flex h-full w-fit flex-col items-center md:mr-10 md:items-start">
-          <p className="font-circular-web mt-3 max-w-sm text-center text-violet-50 md:text-start">
+        <div className="mb-10 flex h-full w-fit flex-col items-center md:mr-10">
+          <p className="font-circular-web mt-3 max-w-sm text-center text-violet-50">
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ratione
             molestiae quas nostrum omnis, totam debitis quaerat maxime
             consequuntur minus neque.

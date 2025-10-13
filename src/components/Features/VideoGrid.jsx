@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import { TiLocationArrow } from 'react-icons/ti';
 import BentoCard from '../../components/features/BentoCard';
 import useInView from '../../hooks/useInView';
@@ -5,6 +6,19 @@ import BentoTilt from './BentoTilt';
 
 const VideoGrid = () => {
   const [ref, isInView] = useInView();
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (isInView) {
+      video.play().catch(() => {});
+    } else {
+      video.pause();
+    }
+  }, [isInView]);
+
   return (
     <section className="grid min-h-[135vh] grid-cols-2 grid-rows-3 gap-7 xl:min-h-screen">
       <BentoTilt className="bento-tilt_1 row-span-1 md:col-span-1 md:row-span-2">
@@ -58,7 +72,7 @@ const VideoGrid = () => {
         />
       </BentoTilt>
 
-      <BentoTilt className="bento-tilt_2 flex size-full flex-col justify-between bg-red-400 p-5">
+      <BentoTilt className="bento-tilt_2 flex size-full flex-col justify-between bg-violet-50 p-5">
         <h1
           className={`special-font ${isInView ? 'textAnimSlower' : ''} bento-title max-w-md text-black`}
         >
@@ -68,16 +82,18 @@ const VideoGrid = () => {
       </BentoTilt>
 
       <BentoTilt className="bento-tilt_2 flex size-full flex-col justify-between">
-        <video
-          src={'videos/feature-5-compressed.webm'}
-          poster={`${import.meta.env.BASE_URL}videos/feature-5-compressed.webm`}
-          loop
-          muted
-          autoPlay={isInView}
-          playsInline
-          preload={isInView ? 'metadata' : 'none'}
-          className="absolute top-0 left-0 size-full object-cover object-center"
-        />
+        <div ref={ref}>
+          <video
+            ref={videoRef}
+            src={'videos/feature-5-compressed.webm'}
+            loop
+            muted
+            autoPlay={isInView}
+            playsInline
+            preload="metadata"
+            className="absolute top-0 left-0 size-full object-cover object-center"
+          />
+        </div>
       </BentoTilt>
     </section>
   );

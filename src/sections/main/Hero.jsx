@@ -192,6 +192,7 @@ const Hero = () => {
             loop
             autoplay={isInView}
             className={`absolute inset-0 z-10 m-0 duration-300`}
+            renderer="svg"
           />
         )}
       </div>
