@@ -50,6 +50,7 @@ const Scene = ({ isInView, sectionRef }) => {
     [baseScale]
   );
 
+  // --- 📦 Scroll-based animation (like before)
   useEffect(() => {
     if (!isInView || !sectionRef.current || !modelRef.current) return;
 
@@ -62,7 +63,7 @@ const Scene = ({ isInView, sectionRef }) => {
     });
 
     tl.to(camera.position, {
-      z: 3.5,
+      z: 3,
       y: 0.5,
       duration: 2,
       ease: 'power3.inOut',
@@ -75,9 +76,31 @@ const Scene = ({ isInView, sectionRef }) => {
     );
   }, [camera, isInView, sectionRef]);
 
+  // --- 🌍 Continuous rotation effect (Earth-like)
+  useEffect(() => {
+    if (!modelRef.current) return;
+
+    let rotationTween;
+
+    if (isInView) {
+      // start slow rotation loop
+      rotationTween = gsap.to(modelRef.current.rotation, {
+        y: `+=${Math.PI * 2}`, // full spin
+        duration: 30, // smooth, slow rotation
+        ease: 'none',
+        repeat: -1,
+      });
+    }
+
+    // cleanup: stop animation when not in view
+    return () => {
+      if (rotationTween) rotationTween.kill();
+    };
+  }, [isInView]);
+
   return (
     <>
-      {/* Softer lights, cheaper environment */}
+      {/* 💡 Light optimized for low-cost render */}
       <ambientLight intensity={1.2} />
       <directionalLight position={[5, 5, 5]} intensity={1.8} />
 
