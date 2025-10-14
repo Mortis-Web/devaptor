@@ -34,8 +34,6 @@ export default defineConfig(({ mode }) => ({
     // ✅ Keep file structure clean & consistent
     rollupOptions: {
       output: {
-        entryFileNames: 'js/[name]-[hash].js',
-        chunkFileNames: 'js/[name]-[hash].js',
         assetFileNames: ({ name }) => {
           if (/\.(css)$/.test(name ?? '')) return 'css/[name]-[hash][extname]';
           if (/\.(woff2?|ttf|otf)$/.test(name ?? ''))
