@@ -85,9 +85,6 @@ const Scene = ({ isInView, sectionRef }) => {
         <BlackHoleModel ref={modelRef} {...modelProps} />
       </Suspense>
 
-      {/* use a lightweight environment */}
-      {/* {isInView && <Environment preset="sunset" blur={0.8} />} */}
-
       <OrbitControls enableZoom={false} />
     </>
   );
@@ -100,7 +97,7 @@ const StatisCanvas = ({ isInView }) => {
     <section
       ref={sectionRef}
       id="blackhole-section"
-      className="relative h-[70vh] md:h-screen w-full overflow-hidden"
+      className="relative h-[70vh] w-full overflow-hidden md:h-screen"
     >
       <Canvas
         camera={{ position: [0, 1, 5], fov: 50 }}
