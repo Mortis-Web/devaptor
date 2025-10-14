@@ -4,20 +4,14 @@ import { defineConfig } from 'vite';
 import viteCompression from 'vite-plugin-compression';
 
 export default defineConfig(({ mode }) => ({
-  base: '/devaptor/',
+  // ✅ MUST match your GitHub Pages repo name
+  base: mode === 'production' ? '/devaptor/' : '/',
 
   plugins: [
     react(),
     tailwindcss(),
 
-    // 🧩 Compress assets in production (Brotli + Gzip)
-    mode === 'production' &&
-      viteCompression({
-        algorithm: 'brotliCompress',
-        ext: '.br',
-        threshold: 10240,
-        deleteOriginFile: false,
-      }),
+    // ✅ Only Gzip compression (Brotli often breaks GH Pages)
     mode === 'production' &&
       viteCompression({
         algorithm: 'gzip',
@@ -29,15 +23,13 @@ export default defineConfig(({ mode }) => ({
 
   build: {
     target: 'esnext',
-    sourcemap: true, // source maps allowed
-    minify: 'esbuild', // fast, efficient minification
+    sourcemap: false,
     cssMinify: 'lightningcss',
     cssCodeSplit: true,
-    emptyOutDir: true, // ✅ clears /dist before each build
+    emptyOutDir: true,
     reportCompressedSize: false,
-    chunkSizeWarningLimit: 600,
+    chunkSizeWarningLimit: 1000,
 
-    // 🧱 Rollup output organization
     rollupOptions: {
       output: {
         chunkFileNames: 'assets/js/[name]-[hash].js',
@@ -51,24 +43,22 @@ export default defineConfig(({ mode }) => ({
             return 'assets/media/[name]-[hash][extname]';
           return 'assets/[name]-[hash][extname]';
         },
+        // ✅ Simplified chunk splitting — avoids React corruption
         manualChunks(id) {
           if (id.includes('node_modules')) {
             if (id.includes('react')) return 'react';
             if (id.includes('gsap')) return 'gsap';
-            if (id.includes('lenis')) return 'lenis';
             return 'vendor';
           }
         },
       },
-      treeshake: {
-        moduleSideEffects: false,
-      },
+      // ❌ Removed aggressive treeshaking that broke React
+      treeshake: true,
     },
 
-    // 🚀 Inline limit for small assets
+    // ✅ Don’t inline — GH Pages likes real files
     assetsInlineLimit: 0,
 
-    // 🧠 Esbuild micro-optimizations
     esbuild: {
       drop: mode === 'production' ? ['console', 'debugger'] : [],
       legalComments: 'none',
@@ -80,30 +70,15 @@ export default defineConfig(({ mode }) => ({
 
   optimizeDeps: {
     include: ['react', 'react-dom'],
-    esbuildOptions: {
-      target: 'esnext',
-      minify: true,
-      treeShaking: true,
-    },
   },
 
   server: {
     open: true,
     port: 5173,
-    strictPort: true,
     host: true,
   },
 
   preview: {
     port: 5174,
-  },
-
-  esbuild: {
-    drop: mode === 'production' ? ['console', 'debugger'] : [],
-    legalComments: 'none',
-  },
-
-  experimental: {
-    prefetchLinkedAssets: true,
   },
 }));
