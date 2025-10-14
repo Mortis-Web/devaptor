@@ -5,18 +5,17 @@ import { defineConfig } from 'vite';
 import viteCompression from 'vite-plugin-compression';
 
 export default defineConfig(({ mode }) => ({
-  // 👇 Base path must match your GitHub repo name
+  // 👇 Must match your GitHub repo name
   base: mode === 'production' ? '/devaptor/' : '/',
 
   plugins: [
     react(),
     tailwindcss(),
-    // 🧩 Gzip only in production (safe for GH Pages)
     mode === 'production' &&
       viteCompression({
         algorithm: 'gzip',
         threshold: 10240,
-        deleteOriginFile: true,
+        // deleteOriginFile: true,
       }),
   ].filter(Boolean),
 
@@ -29,11 +28,12 @@ export default defineConfig(({ mode }) => ({
     emptyOutDir: true,
     reportCompressedSize: false,
     assetsInlineLimit: 0,
-    assetsDir: 'assets',
 
-    // ✅ Keep file structure clean & consistent
+    // ✅ Clean flat output (no /assets folder)
     rollupOptions: {
       output: {
+        entryFileNames: 'index-[hash].js',
+        chunkFileNames: 'index-[hash].js',
         assetFileNames: ({ name }) => {
           if (/\.(css)$/.test(name ?? '')) return 'css/[name]-[hash][extname]';
           if (/\.(woff2?|ttf|otf)$/.test(name ?? ''))
