@@ -27,7 +27,8 @@ const BentoCard = memo(
         <video
           ref={videoRef}
           src={src}
-          // poster={poster}
+          poster={poster}
+          loading="lazy"
           loop
           muted
           autoPlay={isInView}

@@ -2,7 +2,7 @@ const Btn = ({ id, title, rightIcon, leftIcon, containerClass }) => {
   return (
     <button
       id={id}
-      className={`group relative z-10 w-fit ${containerClass} cursor-pointer overflow-hidden rounded-full bg-violet-50 px-7 py-3 text-black duration-300`}
+      className={`group relative z-10 w-fit ${containerClass}  cursor-pointer overflow-hidden rounded-full bg-violet-50 px-7 py-3 text-black duration-300`}
     >
       {leftIcon}
 

@@ -65,6 +65,7 @@ const Hero = () => {
           visibility: 'visible',
           scale: 0.25,
           transformOrigin: 'center center',
+          clipPath: 'polygon(96% 0, 17% 21%, 0% 73%, 100% 100%)',
         });
 
         gsap.to('#next-video', {
@@ -72,6 +73,7 @@ const Hero = () => {
           width: '100%',
           height: '100%',
           duration: 1,
+          clipPath: 'polygon(100% 0%, 0% 0%, 0% 100%, 100% 100%)',
           ease: 'power1.inOut',
           onStart: () => {
             nextVideoRef.current.play();
@@ -183,7 +185,7 @@ const Hero = () => {
       <div
         ref={holeRef}
         id="gravity-hole"
-        className="pointer-events-none absolute inset-0 z-20 m-auto size-40 rounded-full backdrop-blur-[4px] sm:size-60"
+        className="xs:size-50 pointer-events-none absolute inset-x-0 inset-y-110 z-20 m-auto size-40 rounded-full backdrop-blur-[4px] sm:inset-y-0 md:size-60"
       >
         <div className="black-hole" />
         {isInView && (
@@ -204,7 +206,7 @@ const Hero = () => {
         <figure className="flex-center h-dvh">
           {/* Mini preview → next video thumbnail */}
           <div className="z-50 size-100 scale-75 overflow-visible md:scale-100">
-            <div className="absolute-center relative size-80 cursor-pointer rounded-xl">
+            <div className="absolute-center size-80 cursor-pointer rounded-xl max-sm:-translate-y-20">
               <VideoPreview>
                 <div
                   onClick={handleMiniVideoClick}

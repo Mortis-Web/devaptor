@@ -113,7 +113,7 @@ const About = () => {
 
       <article className="relative h-screen overflow-hidden" id="clip">
         <figure
-          className={`${tiltable ? 'tilt-wrapper textAnimSlower' : ''} xs:w-fit relative mx-auto w-9/10 [filter:url('#flt_tag')]`}
+          className={`${tiltable ? 'tilt-wrapper anim' : ''} xs:w-fit relative mx-auto w-9/10 [filter:url('#flt_tag')]`}
         >
           <div className={` ${tiltable ? 'tilt' : ''} about-image`}>
             <img

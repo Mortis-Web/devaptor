@@ -99,7 +99,7 @@ body {
     @apply h-1 w-2;
   }
   ::-webkit-scrollbar-thumb {
-    @apply bg-red-400;
+    @apply bg-violet-300;
   }
   ::-webkit-scrollbar-track {
     @apply bg-white/10;
@@ -115,6 +115,9 @@ body {
   }
   section {
     @apply relative isolate;
+  }
+  main {
+    @apply overflow-hidden;
   }
 }
 
@@ -419,6 +422,7 @@ button {
   opacity: 0;
   will-change: transform, opacity;
 }
+
 .textAnim {
   animation: textAnim 1.25s 0.25s var(--scale-easing) forwards;
   opacity: 0;

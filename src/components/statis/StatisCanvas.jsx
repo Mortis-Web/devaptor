@@ -19,7 +19,7 @@ gsap.registerPlugin(ScrollTrigger);
 const useResponsiveScale = isInView => {
   const getScale = useCallback(() => {
     if (window.matchMedia('(max-width: 640px)').matches)
-      return isInView ? 0.6 : 0.5;
+      return isInView ? 0.75 : 0.6;
     if (window.matchMedia('(max-width: 1024px)').matches)
       return isInView ? 0.85 : 0.75;
     return isInView ? 1.35 : 1;
@@ -120,7 +120,7 @@ const StatisCanvas = ({ isInView }) => {
     <section
       ref={sectionRef}
       id="blackhole-section"
-      className="relative h-[70vh] w-full overflow-hidden md:h-screen"
+      className="relative h-[60vh] w-full overflow-hidden md:h-screen"
     >
       <Canvas
         camera={{ position: [0, 1, 5], fov: 50 }}

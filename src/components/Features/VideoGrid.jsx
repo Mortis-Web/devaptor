@@ -20,11 +20,14 @@ const VideoGrid = () => {
   }, [isInView]);
 
   return (
-    <section className="grid min-h-[135vh] grid-cols-2 grid-rows-3 gap-7 xl:min-h-screen">
+    <section
+      ref={ref}
+      className="grid min-h-[135vh] grid-cols-2 grid-rows-3 gap-7 xl:min-h-screen"
+    >
       <BentoTilt className="bento-tilt_1 row-span-1 md:col-span-1 md:row-span-2">
         <BentoCard
-          src="videos/feature-2-compressed.webm"
-          poster={`${import.meta.env.BASE_URL}videos/feature-2-compressed.webm`}
+          src={`${import.meta.env.BASE_URL}videos/feature-2-compressed.webm`}
+          poster={`${import.meta.env.BASE_URL}videos/feature-poster-2.webp`}
           title={
             <>
               zig<b>m</b>a
@@ -41,8 +44,8 @@ const VideoGrid = () => {
 
       <BentoTilt className="bento-tilt_1 xs:ms-32 row-span-1 ms-14 md:col-span-1 md:ms-0">
         <BentoCard
-          src="videos/feature-3-compressed.webm"
-          poster={`${import.meta.env.BASE_URL}videos/feature-3-compressed.webm`}
+          src={`${import.meta.env.BASE_URL}videos/feature-3-compressed.webm`}
+          poster={`${import.meta.env.BASE_URL}videos/feature-poster-3.webp`}
           title={
             <>
               Ne<b>x</b>us
@@ -57,8 +60,8 @@ const VideoGrid = () => {
       </BentoTilt>
       <BentoTilt className="bento-tilt_1 row-span-1 me-14 md:col-span-1 md:me-0">
         <BentoCard
-          src="videos/feature-4-compressed.webm"
-          poster={`${import.meta.env.BASE_URL}videos/feature-4-compressed.webm`}
+          src={`${import.meta.env.BASE_URL}videos/feature-4-compressed.webm`}
+          poster={`${import.meta.env.BASE_URL}videos/feature-poster-4.webp`}
           title={
             <>
               Az<b>u</b>l
@@ -82,14 +85,16 @@ const VideoGrid = () => {
       </BentoTilt>
 
       <BentoTilt className="bento-tilt_2 flex size-full flex-col justify-between">
-        <div ref={ref}>
+        <div>
           <video
             ref={videoRef}
-            src={'videos/feature-5-compressed.webm'}
+            src={`${import.meta.env.BASE_URL}videos/feature-5-compressed.webm`}
+            poster={`${import.meta.env.BASE_URL}videos/feature-poster-5.webp`}
             loop
             muted
             autoPlay={isInView}
             playsInline
+            loading="lazy"
             preload="metadata"
             className="absolute top-0 left-0 size-full object-cover object-center"
           />

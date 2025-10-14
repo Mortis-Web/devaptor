@@ -6,26 +6,33 @@ const BentoTilt = ({ children, className = '' }) => {
 
   // ✅ Throttle mouse movements with requestAnimationFrame
   const rafId = useRef(null);
+  const isTouchDevice = window.matchMedia(
+    '(hover: none), (pointer: coarse)'
+  ).matches;
 
-  const handleMouseMove = useCallback(e => {
-    if (!cardRef.current) return;
+  const handleMouseMove = useCallback(
+    e => {
+      if (isTouchDevice) return; // ✅ no tilt setup on mobile/tablet
+      if (!cardRef.current) return;
 
-    if (rafId.current) cancelAnimationFrame(rafId.current);
+      if (rafId.current) cancelAnimationFrame(rafId.current);
 
-    rafId.current = requestAnimationFrame(() => {
-      const { left, top, width, height } =
-        cardRef.current.getBoundingClientRect();
-      const relativeX = (e.clientX - left) / width;
-      const relativeY = (e.clientY - top) / height;
+      rafId.current = requestAnimationFrame(() => {
+        const { left, top, width, height } =
+          cardRef.current.getBoundingClientRect();
+        const relativeX = (e.clientX - left) / width;
+        const relativeY = (e.clientY - top) / height;
 
-      const tiltX = (relativeY - 0.5) * 6;
-      const tiltY = (relativeX - 0.5) * -6;
+        const tiltX = (relativeY - 0.5) * 8;
+        const tiltY = (relativeX - 0.5) * -8;
 
-      setTransformStyle(
-        `perspective(800px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale3d(0.97,0.97,0.97)`
-      );
-    });
-  }, []);
+        setTransformStyle(
+          `perspective(800px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale3d(0.97,0.97,0.97)`
+        );
+      });
+    },
+    [isTouchDevice]
+  );
 
   const handleMouseLeave = useCallback(() => {
     setTransformStyle(
@@ -38,7 +45,7 @@ const BentoTilt = ({ children, className = '' }) => {
       ref={cardRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className={`${className} transition-transform duration-300 ease-out will-change-transform`}
+      className={`${className} transition-transform duration-200 ease-out will-change-transform`}
       style={{ transform: transformStyle }}
     >
       {children}
