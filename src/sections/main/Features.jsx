@@ -67,7 +67,7 @@ const Features = () => {
         <BentoTilt className="border-hsla relative mb-7 h-96 w-full overflow-hidden rounded-md duration-200 ease-out md:h-[65vh]">
           <BentoCard
             src={featureVideoSrc}
-            poster={`${import.meta.env.BASE_URL}img/feature-poster-1.webp`}
+            poster={`${import.meta.env.BASE_URL}img/feature-poster-5.webp`}
             title={
               <>
                 radi<b>n</b>t

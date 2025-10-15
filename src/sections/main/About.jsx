@@ -24,7 +24,7 @@ const About = () => {
         opacity: 0,
         y: 50,
         pointerEvents: 'none',
-        clipPath: 'polygon(96% 0, 17% 21%, 0% 73%, 100% 100%)',
+        clipPath: ' polygon(25% 0%, 100% 40%, 75% 100%, 0% 100%)',
         scale: 0.5,
       });
 

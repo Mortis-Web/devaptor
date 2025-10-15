@@ -65,7 +65,7 @@ const Hero = () => {
           visibility: 'visible',
           scale: 0.25,
           transformOrigin: 'center center',
-          clipPath: 'polygon(96% 0, 17% 21%, 0% 73%, 100% 100%)',
+          clipPath: ' polygon(25% 0%, 100% 40%, 75% 100%, 0% 100%)',
         });
 
         gsap.to('#next-video', {
@@ -262,7 +262,7 @@ const Hero = () => {
               preload="auto"
               id="main-video"
               playsInline
-              poster={`${import.meta.env.BASE_URL}img/poster.webp`}
+              poster={`${import.meta.env.BASE_URL}img/poster-1.webp`}
               onLoadedData={handleLoadedVideo}
               className="tilt pointer-events-none absolute top-0 left-0 size-full object-cover object-center"
             />

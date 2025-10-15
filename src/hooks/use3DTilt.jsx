@@ -1,9 +1,6 @@
 import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
 
 const use3DTilt = (selector = '.tilt-wrapper') => {
-  const location = useLocation();
-
   useEffect(() => {
     // 🧠 Skip entirely on mobile or touch devices
     const isTouchDevice = window.matchMedia(
@@ -68,7 +65,7 @@ const use3DTilt = (selector = '.tilt-wrapper') => {
         wrapper.removeEventListener('mouseleave', MouseLeave);
       });
     };
-  }, [selector, location.pathname]);
+  }, [selector]);
 };
 
 export default use3DTilt;

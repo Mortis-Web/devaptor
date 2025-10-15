@@ -31,7 +31,7 @@ const AnimatedTitle = ({ title, subTitle, containerClass = '', isInView }) => {
   }, []);
 
   return (
-    <div ref={containerRef} className={`${containerClass} animated-title`}>
+    <div ref={containerRef} className={`${containerClass} animated-title -mt-px`}>
       {/* Small title */}
       <h2
         className={`font-general ${isInView ? 'textAnim' : ''} mx-auto w-fit text-sm uppercase opacity-0 duration-300 md:text-[1.5rem]`}

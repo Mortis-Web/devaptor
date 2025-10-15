@@ -22,12 +22,12 @@ const VideoGrid = () => {
   return (
     <section
       ref={ref}
-      className="grid min-h-[135vh] grid-cols-2 grid-rows-3 gap-7 xl:min-h-screen"
+      className="grid min-h-screen grid-cols-2 grid-rows-3 gap-7 xl:min-h-[135vh]"
     >
       <BentoTilt className="bento-tilt_1 row-span-1 md:col-span-1 md:row-span-2">
         <BentoCard
           src={`${import.meta.env.BASE_URL}videos/feature-2-compressed.webm`}
-          poster={`${import.meta.env.BASE_URL}img/feature-poster-2.webp`}
+          poster={`${import.meta.env.BASE_URL}img/feature-poster-4.webp`}
           title={
             <>
               zig<b>m</b>a
@@ -61,7 +61,7 @@ const VideoGrid = () => {
       <BentoTilt className="bento-tilt_1 row-span-1 me-14 md:col-span-1 md:me-0">
         <BentoCard
           src={`${import.meta.env.BASE_URL}videos/feature-4-compressed.webm`}
-          poster={`${import.meta.env.BASE_URL}img/feature-poster-4.webp`}
+          poster={`${import.meta.env.BASE_URL}img/feature-poster-2.webp`}
           title={
             <>
               Az<b>u</b>l
@@ -89,7 +89,7 @@ const VideoGrid = () => {
           <video
             ref={videoRef}
             src={`${import.meta.env.BASE_URL}videos/feature-5-compressed.webm`}
-            poster={`${import.meta.env.BASE_URL}img/feature-poster-5.webp`}
+            poster={`${import.meta.env.BASE_URL}img/feature-poster-1.webp`}
             loop
             muted
             autoPlay={isInView}
