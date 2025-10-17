@@ -1,7 +1,6 @@
 import { useGSAP } from '@gsap/react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useMemo } from 'react';
 import BentoCard from '../../components/features/BentoCard';
 import BentoTilt from '../../components/Features/BentoTilt';
 import VideoGrid from '../../components/Features/VideoGrid';
@@ -13,11 +12,6 @@ const Features = () => {
   const [ref, isInView] = useInView({
     rootMargin: '-150px 0px 0px 0px', // trigger 150px *above* the card
   });
-
-  const featureVideoSrc = useMemo(
-    () => `${import.meta.env.BASE_URL}videos/feature-1-compressed.webm`,
-    []
-  );
 
   useGSAP(
     () => {
@@ -42,7 +36,7 @@ const Features = () => {
 
   return (
     <section ref={ref} id="features" className="pb-30">
-      <div className="mx-auto px-3 md:px-10">
+      <div className="mx-auto max-w-[1536px] px-3 md:px-10">
         <div className="font-circular-web px-5 py-24">
           <p
             className={`${
@@ -64,9 +58,10 @@ const Features = () => {
         </div>
 
         {/* 🎥 Video Section */}
-        <BentoTilt className="border-hsla relative mb-7 h-96 w-full overflow-hidden rounded-md duration-200 ease-out md:h-[65vh]">
+
+        <BentoTilt className="border-hsla relative mb-7 h-96 w-full overflow-hidden rounded-md duration-200 ease-out  md:h-[65vh]">
           <BentoCard
-            src={featureVideoSrc}
+            src={`${import.meta.env.BASE_URL}videos/feature-1-compressed.webm`}
             poster={`${import.meta.env.BASE_URL}img/feature-poster-5.webp`}
             title={
               <>

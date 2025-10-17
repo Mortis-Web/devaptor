@@ -22,7 +22,7 @@ const VideoGrid = () => {
   return (
     <section
       ref={ref}
-      className="grid min-h-screen grid-cols-2 grid-rows-3 gap-7 xl:min-h-[135vh]"
+      className="grid min-h-screen grid-cols-2 grid-rows-3 gap-7 xl:min-h-[135vh] 2xl:min-h-fit"
     >
       <BentoTilt className="bento-tilt_1 row-span-1 md:col-span-1 md:row-span-2">
         <BentoCard
@@ -42,7 +42,7 @@ const VideoGrid = () => {
         />
       </BentoTilt>
 
-      <BentoTilt className="bento-tilt_1 xs:ms-32 row-span-1 ms-14 md:col-span-1 md:ms-0">
+      <BentoTilt className="bento-tilt_1 xs:ms-32 xs:ms-14 row-span-1 md:col-span-1 md:ms-0">
         <BentoCard
           src={`${import.meta.env.BASE_URL}videos/feature-3-compressed.webm`}
           poster={`${import.meta.env.BASE_URL}img/feature-poster-3.webp`}
@@ -58,7 +58,7 @@ const VideoGrid = () => {
           isInView={isInView}
         />
       </BentoTilt>
-      <BentoTilt className="bento-tilt_1 row-span-1 me-14 md:col-span-1 md:me-0">
+      <BentoTilt className="bento-tilt_1 xs:me-14 row-span-1 md:col-span-1 md:me-0">
         <BentoCard
           src={`${import.meta.env.BASE_URL}videos/feature-4-compressed.webm`}
           poster={`${import.meta.env.BASE_URL}img/feature-poster-2.webp`}
@@ -75,7 +75,7 @@ const VideoGrid = () => {
         />
       </BentoTilt>
 
-      <BentoTilt className="bento-tilt_2 flex size-full flex-col justify-between bg-violet-50 p-5">
+      <BentoTilt className="bento-tilt_2 xs:max-md:w-100 flex size-full flex-col justify-between justify-self-end bg-violet-50 p-5">
         <h1
           className={`special-font ${isInView ? 'textAnimSlower' : ''} bento-title max-w-md text-black`}
         >
@@ -95,7 +95,7 @@ const VideoGrid = () => {
             autoPlay={isInView}
             playsInline
             loading="lazy"
-            preload="metadata"
+            preload={isInView ? 'metadata' : 'none'}
             className="absolute top-0 left-0 size-full object-cover object-center"
           />
         </div>

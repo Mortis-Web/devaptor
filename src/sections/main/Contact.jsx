@@ -7,7 +7,11 @@ const Contact = () => {
   const [ref, isInView] = useInView();
 
   return (
-    <section ref={ref} id="contact" className="xs:px-10 my-20 min-h-96 px-4">
+    <section
+      ref={ref}
+      id="contact"
+      className="xs:px-10 my-10 min-h-96 px-4 sm:my-20"
+    >
       <div className="relative rounded-lg bg-black pt-24 pb-10 text-blue-50 sm:overflow-hidden sm:pb-24">
         {/* Left-side clipped images */}
         <figure className="absolute top-0 -left-20 hidden h-full w-72 overflow-hidden sm:block lg:left-20 lg:w-96">

@@ -3,7 +3,16 @@ import { TiLocationArrow } from 'react-icons/ti';
 import Btn from '../../utils/Btn';
 
 const BentoCard = memo(
-  ({ src, poster, title, description, isComingSoon, ref, isInView }) => {
+  ({
+    src,
+    poster,
+    title,
+    description,
+    isComingSoon,
+    ref,
+    isInView,
+    videoStyles = '',
+  }) => {
     const videoRef = useRef(null);
 
     // 🎥 Pause/Play video when visibility changes
@@ -33,8 +42,8 @@ const BentoCard = memo(
           muted
           autoPlay={isInView}
           playsInline
-          preload="metadata"
-          className="pointer-events-none absolute inset-0 h-full w-full object-cover object-center"
+          preload={isInView ? 'metadata' : 'none'}
+          className={`pointer-events-none absolute inset-0 h-full w-full object-cover object-center ${videoStyles}`}
         />
 
         {/* 🪟 Overlay Content */}

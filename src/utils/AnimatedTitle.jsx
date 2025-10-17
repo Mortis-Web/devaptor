@@ -31,7 +31,10 @@ const AnimatedTitle = ({ title, subTitle, containerClass = '', isInView }) => {
   }, []);
 
   return (
-    <div ref={containerRef} className={`${containerClass} animated-title -mt-px`}>
+    <div
+      ref={containerRef}
+      className={`${containerClass} animated-title -mt-px`}
+    >
       {/* Small title */}
       <h2
         className={`font-general ${isInView ? 'textAnim' : ''} mx-auto w-fit text-sm uppercase opacity-0 duration-300 md:text-[1.5rem]`}
@@ -40,7 +43,7 @@ const AnimatedTitle = ({ title, subTitle, containerClass = '', isInView }) => {
       </h2>
 
       {/* Big animated title */}
-      <div className="special-font mt-5 text-center text-4xl leading-[0.8] uppercase md:text-[6rem]">
+      <div className="special-font mt-5 text-center text-4xl xs:text-5xl leading-[0.8] uppercase md:text-[6rem]">
         {subTitle.split('<br />').map((line, index) => (
           <div
             key={index}

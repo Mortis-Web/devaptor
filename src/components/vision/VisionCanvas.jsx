@@ -19,7 +19,7 @@ gsap.registerPlugin(ScrollTrigger);
 const useResponsiveScale = isInView => {
   const getScale = useCallback(() => {
     if (window.matchMedia('(max-width: 640px)').matches)
-      return isInView ? 0.75 : 0.6;
+      return isInView ? 0.8 : 0.7;
     if (window.matchMedia('(max-width: 1024px)').matches)
       return isInView ? 0.85 : 0.75;
     return isInView ? 1.35 : 1;
@@ -113,7 +113,7 @@ const Scene = ({ isInView, sectionRef }) => {
   );
 };
 
-const StatisCanvas = ({ isInView }) => {
+const VisionCanvas = ({ isInView }) => {
   const sectionRef = useRef();
 
   return (
@@ -145,4 +145,4 @@ const StatisCanvas = ({ isInView }) => {
   );
 };
 
-export default StatisCanvas;
+export default VisionCanvas;

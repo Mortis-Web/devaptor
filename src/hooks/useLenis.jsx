@@ -9,8 +9,8 @@ export default function useLenis() {
     const lenisInstance = new Lenis({
       smoothWheel: true,
       smoothTouch: true,
-      duration: 1.5,
-      lerp: 0.05,
+      duration: 1.125,
+      lerp: 0.1,
       direction: 'vertical',
     });
 

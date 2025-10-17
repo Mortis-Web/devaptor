@@ -1,11 +1,10 @@
-// Statis.jsx
 import { Suspense } from 'react';
+import VisionCanvas from '../../components/vision/VisionCanvas';
 import useInView from '../../hooks/useInView';
-import StatisCanvas from './../../components/statis/StatisCanvas';
-import AnimatedTitle from './../../utils/AnimatedTitle';
-import Loader from './../../utils/Loader';
+import AnimatedTitle from '../../utils/AnimatedTitle';
+import Loader from '../../utils/Loader';
 
-const Statis = () => {
+const Vision = () => {
   const [ref, isInView] = useInView();
 
   return (
@@ -18,11 +17,11 @@ const Statis = () => {
       />{' '}
       <figure ref={ref} className="h-[60vh] overflow-hidden pb-10 md:h-screen">
         <Suspense fallback={<Loader containerClass="bg-black" />}>
-          <StatisCanvas isInView={isInView} />
+          <VisionCanvas isInView={isInView} />
         </Suspense>
       </figure>
     </section>
   );
 };
 
-export default Statis;
+export default Vision;

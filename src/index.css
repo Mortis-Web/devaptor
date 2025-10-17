@@ -117,7 +117,7 @@ body {
     @apply relative isolate;
   }
   main {
-    @apply overflow-hidden;
+    @apply min-w-[280px] overflow-hidden;
   }
 }
 
@@ -137,7 +137,7 @@ button {
 }
 
 @utility border-hsla {
-  @apply border border-white/20;
+  @apply border border-white/20 [direction:ltr];
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -243,6 +243,10 @@ button {
 
   .gallery-img-4 {
     @apply rounded-lg sm:size-80 md:h-96 md:w-[25rem];
+  }
+
+  .statis-grid {
+    @apply grid grid-cols-1 lg:grid-cols-3;
   }
 
   .sword-man-clip-path {
