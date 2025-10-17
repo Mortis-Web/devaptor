@@ -45,7 +45,7 @@ const BentoTilt = ({ children, className = '' }) => {
       ref={cardRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className={`${className} transition-transform duration-200 ease-out will-change-transform`}
+      className={`${className} transition-transform duration-200 ease-out will-change-transform perspective-midrange`}
       style={{ transform: transformStyle }}
     >
       {children}

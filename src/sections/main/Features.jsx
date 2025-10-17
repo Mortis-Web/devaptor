@@ -59,7 +59,7 @@ const Features = () => {
 
         {/* 🎥 Video Section */}
 
-        <BentoTilt className="border-hsla relative mb-7 h-96 w-full overflow-hidden rounded-md duration-200 ease-out  md:h-[65vh]">
+        <BentoTilt className="border-hsla relative mb-7 h-96 w-full overflow-hidden rounded-md duration-200 ease-out md:h-[65vh]">
           <BentoCard
             src={`${import.meta.env.BASE_URL}videos/feature-1-compressed.webm`}
             poster={`${import.meta.env.BASE_URL}img/feature-poster-5.webp`}

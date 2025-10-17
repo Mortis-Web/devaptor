@@ -198,7 +198,7 @@ const Hero = () => {
           />
         )}
       </div>
-      {isLoading && <Loader containerClass={'bg-violet-50'} />}
+      {isLoading && <Loader containerClass={'!bg-violet-50'} />}
       <article
         id="video-frame"
         className="bg-blue-75 relative z-10 h-dvh overflow-hidden"

@@ -18,7 +18,7 @@ const Statistics = () => {
         }
         isInView={isInView}
       />
-      <div className="mx-auto grid max-w-[1536px] gap-7 px-3 md:px-10 lg:grid-cols-2 lg:py-20">
+      <div className="mx-auto grid max-w-[1140px] gap-7 px-3 md:px-10 lg:grid-cols-2 lg:py-20">
         {/* 🎥 Video Section */}
 
         <StatisGridOne ref={ref} isInView={isInView} />

@@ -1,3 +1,4 @@
+import BentoTilt from '../../components/Features/BentoTilt';
 import AnimatedTitle from '../../utils/AnimatedTitle';
 import Btn from '../../utils/Btn';
 import RoundedCorners from '../../utils/RoundedCorners';
@@ -26,15 +27,15 @@ const Story = () => {
             className={`story-img-container ${isInView ? 'textAnimSlower' : 'opacity-0'} `}
           >
             <div className="story-img-mask">
-              <span className="story-img-content tilt-wrapper">
+              <BentoTilt className="story-img-content">
                 <img
                   src={`${import.meta.env.BASE_URL}img/entrance.webp`}
                   alt="story entrance image"
-                  className="tilt object-cover will-change-transform"
+                  className="object-cover will-change-transform"
                   decoding="async"
                   loading="lazy"
                 />
-              </span>
+              </BentoTilt>
             </div>
             <RoundedCorners />
           </figure>
