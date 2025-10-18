@@ -301,7 +301,7 @@ button {
 .three-body {
   --uib-size: 100px;
   --uib-speed: 0.8s;
-  --uib-color: #f87171;
+  --uib-color: #5724ff;
   position: relative;
   display: inline-block;
   height: var(--uib-size);
@@ -473,7 +473,7 @@ section > .mouse-bullet::after {
 }
 
 .mouse-bullet:hover:after {
-  background-color: #f87171 !important;
+  background-color: #5724ff !important;
 }
 
 @keyframes scrolling {

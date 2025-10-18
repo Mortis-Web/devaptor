@@ -36,13 +36,14 @@ const StatisGridTwo = ({ ref, isInView }) => {
         </span>
       </BentoTilt>
       <BentoTilt className="border-hsla xs:w-100 relative isolate col-span-3 mb-7 h-80 w-full overflow-hidden rounded-md bg-violet-50 duration-200 ease-out sm:w-140 lg:w-full">
-       
-        <span className="special-font xs:text-[9rem] xs:-bottom-7.5 absolute -bottom-2.5 left-2.5 z-50 flex text-[6rem] text-black sm:left-10 xl:text-[11rem]">
-          $20M<span className="xs:hidden block">+</span>
-        </span>
-        <span className="special-font xs:block absolute right-7.5 bottom-5 z-50 hidden text-[9rem] text-black sm:right-40 lg:right-10 xl:bottom-0 xl:text-[11rem]">
-          +
-        </span>
+        <div className={`${isInView ? 'textAnimSlowest' : 'opacity-0'} size-full`}>
+          <span className="special-font xs:text-[9rem] xs:-bottom-7.5 absolute -bottom-2.5 left-2.5 z-50 flex text-[6rem] text-black sm:left-10 xl:text-[11rem]">
+            $20M<span className="xs:hidden block">+</span>
+          </span>
+          <span className="special-font xs:block absolute right-7.5 bottom-5 z-50 hidden text-[9rem] text-black sm:right-40 lg:right-10 xl:bottom-0 xl:text-[11rem]">
+            +
+          </span>
+        </div>
         <span className="font-general xs:block absolute right-7.5 bottom-7.5 z-50 hidden text-center text-sm text-black uppercase sm:right-40 lg:right-12.5">
           More to
           <br /> be added

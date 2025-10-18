@@ -296,7 +296,7 @@ const Hero = () => {
         </div>
         <span
           onClick={() => Lenis?.scrollTo(`#about`)}
-          className="mouse-bullet absolute right-0 bottom-3 left-0 z-100 mx-auto hidden h-15 w-10 cursor-pointer rounded-(--mouse-shape) border-3 border-white duration-300 hover:border-red-400 md:flex"
+          className="mouse-bullet absolute right-0 bottom-3 left-0 z-100 mx-auto hidden h-15 w-10 cursor-pointer rounded-(--mouse-shape) border-3 border-white duration-300 hover:border-violet-300 md:flex"
         >
           {' '}
         </span>
@@ -323,7 +323,7 @@ const Hero = () => {
       </div>
       <span
         onClick={() => Lenis?.scrollTo(`#about`)}
-        className="mouse-bullet absolute right-0 bottom-3 left-0 mx-auto hidden h-15 w-10 cursor-pointer rounded-(--mouse-shape) border-3 border-black duration-300 hover:border-red-400 md:flex"
+        className="mouse-bullet absolute right-0 bottom-3 left-0 mx-auto hidden h-15 w-10 cursor-pointer rounded-(--mouse-shape) border-3 border-black duration-300 hover:border-violet-300 md:flex"
       >
         {' '}
       </span>

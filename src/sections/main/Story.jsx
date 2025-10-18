@@ -27,7 +27,7 @@ const Story = () => {
             className={`story-img-container ${isInView ? 'textAnimSlower' : 'opacity-0'} `}
           >
             <div className="story-img-mask">
-              <BentoTilt className="story-img-content">
+              <BentoTilt className="story-img-content perspective-dramatic">
                 <img
                   src={`${import.meta.env.BASE_URL}img/entrance.webp`}
                   alt="story entrance image"

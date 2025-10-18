@@ -14,7 +14,9 @@ const StatisGridOne = ({ ref, isInView }) => {
           isInView={isInView}
           videoStyles=" sm:scale-160 xl:!object-[-50%]"
         />
-        <span className="special-font absolute -bottom-7.5 left-5 z-50 text-[8rem] text-white">
+        <span
+          className={`${isInView ? 'textAnimSlow' : 'opacity-0'} special-font absolute -bottom-7.5 left-5 z-50 text-[8rem] text-white`}
+        >
           24B+
         </span>
         <span className="font-general absolute top-3 left-5 z-50 text-sm text-black">
@@ -22,7 +24,9 @@ const StatisGridOne = ({ ref, isInView }) => {
         </span>
       </BentoTilt>
       <BentoTilt className="border-hsla group xs:w-100 relative col-span-2 mb-7 h-80 w-full justify-self-end overflow-hidden rounded-md bg-white text-black duration-200 ease-out lg:w-full">
-        <h2 className="special-font xs:text-[6rem] xs:translate-x-26 xs:[transform:matrix3d(_0.99998,_-0.100886,_0,_0.0027625,_0,_0.821044,_0,_0,_0,_0,_1,_0,_49.1319,_-6.53523,_0,_1)] xs:translate-y-6 -mt-4 scale-90 text-[6rem] text-black transition-all duration-500 group-hover:translate-x-4 group-hover:scale-100 group-hover:[transform:none] lg:translate-x-10 xl:text-[7rem]">
+        <h2
+          className={`special-font xs:text-[6rem] xs:translate-x-26 xs:[transform:matrix3d(_0.99998,_-0.100886,_0,_0.0027625,_0,_0.821044,_0,_0,_0,_0,_1,_0,_49.1319,_-6.53523,_0,_1)] -mt-4 scale-90 text-[6rem] text-black transition-all duration-500 group-hover:translate-x-4 group-hover:scale-100 group-hover:[transform:none] lg:translate-x-10 xl:text-[7rem]`}
+        >
           970GB+
         </h2>
         <span className="font-general absolute bottom-3 left-5 z-50 text-sm text-black">
@@ -46,9 +50,15 @@ const StatisGridOne = ({ ref, isInView }) => {
         </span>
         <span className="font-general absolute top-3 left-5 z-50 flex flex-col text-sm text-black">
           Treasury
-          <span className="special-font xs:text-[7rem] text-[5rem]">100M+</span>
+          <span
+            className={`${isInView ? 'textAnimSlow' : 'opacity-0'} special-font xs:text-[7rem] text-[5rem]`}
+          >
+            100M+
+          </span>
         </span>
-        <span className="special-font xs:pt-20 xs:text-[7rem] absolute inset-0 m-auto h-fit w-fit pt-12 text-[5rem] text-black">
+        <span
+          className={`${isInView ? 'textAnimSlower' : 'opacity-0'} special-font xs:pt-20 xs:text-[7rem] absolute inset-0 m-auto h-fit w-fit pt-12 text-[5rem] text-black`}
+        >
           <b>V</b>
         </span>
       </BentoTilt>
